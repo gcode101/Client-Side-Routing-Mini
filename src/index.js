@@ -28,31 +28,32 @@ function Home(props) {
 }
 
 function Products(props) {
+	const { match } = props;
 	return (
 		<div>
 			<h1>Products Component</h1>
 			<p>This is the Products page</p>
 			<ul>
 				<li className="navlink">
-					<NavLink to="/products/music" activeClassName="navlink--selected" exact>
+					<NavLink to={`${match.url}/music`} activeClassName="navlink--selected" exact>
 						Music
 					</NavLink>
 				</li>
 				<li className="navlink">
-					<NavLink to="/products/movies" activeClassName="navlink--selected">
+					<NavLink to={`${match.url}/movies`} activeClassName="navlink--selected">
 						Movies
 					</NavLink>
 				</li>
 				<li className="navlink">
-					<NavLink to="/products/books" activeClassName="navlink--selected">
+					<NavLink to={`${match.url}/books`} activeClassName="navlink--selected">
 						Books
 					</NavLink>
 				</li>
 			</ul>
 
-			<Route path="/products/music" component={Music} />
-			<Route path="/products/movies" component={Movies} />
-			<Route path="/products/books" component={Books} />
+			<Route path={`${match.path}/music`} component={Music} />
+			<Route path={`${match.path}/movies`} component={Movies} />
+			<Route path={`${match.path}/books`} component={Books} />
 		</div>
 	);
 }
@@ -84,6 +85,10 @@ function Books(props) {
 	);
 }
 
+function greeter() {
+
+}
+
 ReactDOM.render(
 	<Router>
 		<div>
@@ -99,15 +104,15 @@ ReactDOM.render(
 					</NavLink>
 				</li>
 				<li className="navlink">
-					<NavLink to="/products" activeClassName="navlink--selected">
-						Products
+					<NavLink to="/solutions" activeClassName="navlink--selected">
+						Solutions
 					</NavLink>
 				</li>
 			</ul>
 
 			<Route path="/" component={Home} exact />
 			<Route path="/about" component={About} />
-			<Route path="/products" component={Products} />
+			<Route path="/solutions" component={Products} />
 		</div>
 	</Router>
 	, document.getElementById('root'));
